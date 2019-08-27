@@ -64,7 +64,6 @@ public:
 
                 if (current_sit < 0 || current_sit >= size) {
                     len = j - label;
-
                     break;
                 }
 
@@ -97,24 +96,36 @@ public:
                 len -= 1;
             }
 
+            // less time
             if (len > result.size()) {
-                result = "";
 
                 int l1 = move(len - 1);
                 int l2 = move(len - 2);
 
-                if (l1 < l2) {
-                    for (int k = i + l1; k <= i +l2; ++k) {
-                        result += s[k];
-                    }
-                } else {
-                    for (int k = i + l2; k <= i + l1; ++k) {
-                        result += s[k];
-                    }
-                }
+                int start = i + (l1 < l2 ? l1 : l2);
+
+                result = s.substr(start, len);
             }
+
+            // less memory
+//            if (len > result.size()) {
+//                result = "";
+//
+//                int l1 = move(len - 1);
+//                int l2 = move(len - 2);
+//
+//                int start = l1 < l2 ? l1 : l2;
+//                if (l1 < l2) {
+//                    for (int k = i + l1; k <= i +l2; ++k) {
+//                        result += s[k];
+//                    }
+//                } else {
+//                    for (int k = i + l2; k <= i + l1; ++k) {
+//                        result += s[k];
+//                    }
+//                }
+//            }
         }
-        cout << "result size: " << result.size() << endl;
         return  result;
     }
 
