@@ -42,7 +42,7 @@ public:
 };
  */
 
-// plan 2 no pass
+// plan 2
 class Solution {
 public:
     string longestPalindrome(string s) {
@@ -144,6 +144,21 @@ public:
         return m;
     }
 };
+
+// other demo
+//class Solution {
+//public:
+//    string longestPalindrome(string &s) {
+//        int begin=0, end=0;
+//        for(int i=0; i<s.length(); ++i){
+//            int left=i, right=i;
+//            for(; right+1<s.length() && s[right]==s[right+1]; ++right);
+//            for(; left>0 && right+1<s.length() && s[left-1]==s[right+1]; --left, ++right);
+//            if(right-left>end-begin) begin=left, end=right;
+//        }
+//        return s.substr(begin,end-begin+1);
+//    }
+//};
 
 int main() {
     Solution solution;
