@@ -8,3 +8,4 @@
 [3.无重复字符的最长子串](algotithm/3/README.md)  
 [4.寻找两个有序数组的中位数#](algotithm/4/README.md)  
 [5.最长回文子串*](algotithm/5/README.md)  
+[6.Z字形变换](algotithm/6/README.md)  
