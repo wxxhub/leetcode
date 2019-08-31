@@ -9,3 +9,5 @@
 [4.寻找两个有序数组的中位数#](algotithm/4/README.md)  
 [5.最长回文子串*](algotithm/5/README.md)  
 [6.Z字形变换](algotithm/6/README.md)  
+[7.整数反转](algotithm/7/README.md)  
+[8.字符串转换整数 (atoi)](algotithm/8/README.md)  
