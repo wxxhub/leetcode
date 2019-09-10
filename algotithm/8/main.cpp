@@ -9,6 +9,7 @@ public:
         int min = 0x80000000;
         long result = 0;
         int first_cha = 0;
+
         for (int i = 0; i < str.size(); ++i) {
             if (str[i] == ' ') {
                 if (first_cha != 0) {
