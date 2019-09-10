@@ -23,6 +23,8 @@ A: residual_profit = sum_profit
 ~A: residual_profit = sum_profit  - profit
  */
 
+/*
+// 采用插入时排序.
 int insertSearchNode(vector<SearchNode> &searchNodes, const vector<Node> &nodes, int layer, int sum_profit, int sum_weight, int M) {
     SearchNode left;
     left.sum_weight = sum_weight + nodes[layer].weight;
@@ -68,7 +70,7 @@ int insertSearchNode(vector<SearchNode> &searchNodes, const vector<Node> &nodes,
     }
 }
 
-// 分支限定法
+// 分支限定法 插入时排序
 int branchBrand(const vector<Node> &nodes, int sum_profit, int M) {
     int size = nodes.size();
     vector<SearchNode> searchNodes;
@@ -91,6 +93,69 @@ int branchBrand(const vector<Node> &nodes, int sum_profit, int M) {
         searchNodes.pop_back();
 
         insertSearchNode(searchNodes, nodes, i, search_node.residual_profit, search_node.sum_weight, M);
+
+        i = search_node.layer + 1;
+    }
+
+    return search_node.residual_profit;
+}
+ */
+
+SearchNode popMax(vector<SearchNode> &searchNodes) {
+    SearchNode max_node = searchNodes[0];
+    int i = 1;
+    int delete_site = 0;
+    for (; i < searchNodes.size(); ++i) {
+        if (max_node.residual_profit < searchNodes[i].residual_profit) {
+            max_node = searchNodes[i];
+            delete_site = i;
+        }
+    }
+
+    searchNodes.erase(searchNodes.begin() + delete_site);
+    return  max_node;
+}
+
+void pushData(vector<SearchNode> &searchNodes, const vector<Node> &nodes, int layer, int sum_profit, int sum_weight, int M) {
+    SearchNode left;
+    left.sum_weight = sum_weight + nodes[layer].weight;
+    left.layer = layer;
+    left.residual_profit = sum_profit;
+
+    SearchNode right;
+    right.sum_weight = sum_weight;
+    right.layer = layer;
+    right.residual_profit = sum_profit - nodes[layer].profit;
+
+    if (left.sum_weight <= M)
+        searchNodes.push_back(left);
+
+    if (right.sum_weight <= M)
+        searchNodes.push_back(right);
+}
+
+// 分支限定法 遍历获取最大值
+int branchBrand(const vector<Node> &nodes, int sum_profit, int M) {
+    int size = nodes.size();
+    vector<SearchNode> searchNodes;
+    SearchNode left;
+    left.sum_weight = nodes[0].weight;
+    left.layer = 0;
+    left.residual_profit = sum_profit;
+
+    SearchNode right;
+    right.sum_weight = 0;
+    right.layer = 0;
+    right.residual_profit = sum_profit - nodes[0].profit;
+
+    searchNodes.push_back(right);
+    searchNodes.push_back(left);
+
+    SearchNode search_node;
+    for (int i = 1; i < size;) {
+        search_node = popMax(searchNodes);
+
+        pushData(searchNodes, nodes, i, search_node.residual_profit, search_node.sum_weight, M);
 
         i = search_node.layer + 1;
     }
