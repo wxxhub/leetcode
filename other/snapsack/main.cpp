@@ -138,18 +138,8 @@ void pushData(vector<SearchNode> &searchNodes, const vector<Node> &nodes, int la
 int branchBrand(const vector<Node> &nodes, int sum_profit, int M) {
     int size = nodes.size();
     vector<SearchNode> searchNodes;
-    SearchNode left;
-    left.sum_weight = nodes[0].weight;
-    left.layer = 0;
-    left.residual_profit = sum_profit;
 
-    SearchNode right;
-    right.sum_weight = 0;
-    right.layer = 0;
-    right.residual_profit = sum_profit - nodes[0].profit;
-
-    searchNodes.push_back(right);
-    searchNodes.push_back(left);
+    pushData(searchNodes, nodes, 0, sum_profit, 0, M);
 
     SearchNode search_node;
     for (int i = 1; i < size;) {
