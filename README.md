@@ -17,5 +17,8 @@
 [8.字符串转换整数 (atoi)](algotithm/8/README.md)  
 [9.回文数](algotithm/9/README.md)  
 
+#### 排序算法
+[1.快排序](sort/fast_sort/README.md)
+
 #### 其他  
 [1.0/1背包问题](other/snapsack/README.md)  
