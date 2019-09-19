@@ -25,11 +25,12 @@ void mergeArray(vector<int> &list, int left_start, int mid, int right_end) {
         temp[k++] = list[j++];
     }
 
-    i = left_start;
-    k = 0;
-    for (; i < right_end; ++i, ++k) {
-        list[i] = temp[k];
-    }
+//    i = left_start;
+//    k = 0;
+//    for (; i < right_end; ++i, ++k) {
+//        list[i] = temp[k];
+//    }
+    copy(temp.begin(), temp.end(), list.begin() + left_start);
 }
 
 void mergeSort(vector<int> &list, int left_start, int mid, int right_end) {
