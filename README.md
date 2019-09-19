@@ -19,6 +19,7 @@
 
 #### 排序算法
 [1.快排序](sort/fast_sort/README.md)
+[2.归并排序](sort/merge_sort/README.md)
 
 #### 其他  
 [1.0/1背包问题](other/snapsack/README.md)  
