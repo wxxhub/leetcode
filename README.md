@@ -4,8 +4,8 @@
 
 ## 目录
 [LeetCode题目](#LeetCode题目)  
-[排序算法](#排序算法)
-[其他](#其他)  
+[排序算法](#排序算法)  
+[其他](#其他)   
 
 #### LeetCode题目(*有难度, #完成的不太好, ~未完成)
 [1.两数之和](algotithm/1/README.md)  
@@ -16,7 +16,7 @@
 [6.Z字形变换](algotithm/6/README.md)  
 [7.整数反转](algotithm/7/README.md)  
 [8.字符串转换整数 (atoi)](algotithm/8/README.md)  
-[9.回文数](algotithm/9/README.md) 
+[9.回文数](algotithm/9/README.md)   
 [10.正则表达式匹配~](algotithm/10/README.md)  
 [11.盛最多水的容器#](algotithm/11/README.md)  
 [12.整数转罗马数字](algotithm/12/README.md)  
