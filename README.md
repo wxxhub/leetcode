@@ -29,6 +29,8 @@
 [15.三数之和~](algotithm/15/README.md)  
 [16.最近三数之和~](algotithm/16/README.md)  
 [17.电话号码的字母组合](algotithm/17/README.md)  
+[18.四数之和~](algotithm/18/README.md)  
+[19.删除链表的倒数第N个节点](algotithm/19/README.md)  
 
 #### 排序算法
 [1.快排序](sort/fast_sort/README.md)  
