@@ -26,6 +26,9 @@
 [12.整数转罗马数字](algotithm/12/README.md)  
 [13.罗马数字转整数](algotithm/13/README.md)  
 [14.最长公共前缀](algotithm/14/README.md)  
+[15.三数之和~](algotithm/15/README.md)  
+[16.最近三数之和~](algotithm/16/README.md)  
+[17.电话号码的字母组合](algotithm/17/README.md)  
 
 #### 排序算法
 [1.快排序](sort/fast_sort/README.md)  
