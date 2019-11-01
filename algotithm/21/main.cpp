@@ -36,7 +36,6 @@ public:
         ListNode *index1 = l1;
         ListNode *index2 = l2;
         ListNode *result;
-        ListNode *result_index;
 
         if (index1->val > index2->val) {
             result = index2;
@@ -46,7 +45,7 @@ public:
             index1 = index1->next;
         }
 
-        result_index = result;
+        ListNode *result_index = result;
 
         while (index1 != NULL && index2 != NULL) {
             if (index1->val > index2->val) {
