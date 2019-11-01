@@ -32,6 +32,7 @@
 [18.四数之和~](algotithm/18/README.md)  
 [19.删除链表的倒数第N个节点](algotithm/19/README.md)  
 [20.有效的括号](algotithm/20/README.md)  
+[21.合并两个有序链表](algotithm/21/README.md)
 
 #### 排序算法
 [1.快排序](sort/fast_sort/README.md)  
