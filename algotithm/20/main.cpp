@@ -14,32 +14,17 @@ public:
         for (int i = 0; i < s.size(); ++i) {
             switch (s[i]) {
                 case ')':
-                    if (stack_.empty()) {
-                        return false;
-                    }
-                    pop = *stack_.begin();
-                    stack_.pop_front();
-                    if (pop != '(') {
+                    if (!charge(pop) || pop != '(') {
                         return false;
                     }
                     break;
                 case ']':
-                    if (stack_.empty()) {
-                        return false;
-                    }
-                    pop = *stack_.begin();
-                    stack_.pop_front();
-                    if (pop != '[') {
+                    if (!charge(pop) || pop != '[') {
                         return false;
                     }
                     break;
                 case '}':
-                    if (stack_.empty()) {
-                        return false;
-                    }
-                    pop = *stack_.begin();
-                    stack_.pop_front();
-                    if (pop != '{') {
+                    if (!charge(pop) || pop != '{') {
                         return false;
                     }
                     break;
@@ -57,6 +42,16 @@ public:
 
 private:
     list<char> stack_;
+
+    bool charge(char &c) {
+        if (stack_.empty()) {
+            return false;
+        }
+
+        c = *stack_.begin();
+        stack_.pop_front();
+        return true;
+    }
 };
 
 // 没有提升速度和节省内存...
