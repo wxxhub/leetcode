@@ -25,8 +25,7 @@ void printNode(ListNode *l) {
     }
 }
 
-
-// 提升速度, 但是内存增加.
+// 优化时间, 用少量内存换取更快的速度.
 class Solution {
 public:
     ListNode* mergeKLists(vector<ListNode*>& lists) {
@@ -38,118 +37,14 @@ public:
             return lists[0];
         }
 
-        if (lists.size() <= 2) {
-            return mergeTwoLists(lists[0], lists[1]);
+        int i = 0;
+        while (i < lists.size() - 1) {
+            ListNode *l1 = lists[i++];
+            ListNode *l2 = lists[i++];
+            lists.push_back(mergeTwoLists(l1, l2));
         }
 
-        sortHead(lists);
-
-        list<ListNode*> cache;
-        ListNode *head = lists[0];
-        ListNode *index_node = head;
-
-        int index_flag = 1;
-        int size = lists.size();
-
-        addCacheNode(cache, lists[1]);
-        addCacheNode(cache, lists[0]->next);
-
-
-        while (!cache.empty() || index_flag < size - 1) {
-            ListNode *current_node = cache.front();
-            cache.pop_front();
-
-            index_node->next = current_node;
-            index_node = current_node;
-
-            if (index_flag < size - 1 && current_node == lists[index_flag]) {
-                addCacheNode(cache, lists[++index_flag]);
-            }
-
-            if (current_node->next != NULL) {
-                addCacheNode(cache, current_node->next);
-            }
-        }
-
-        return head;
-    }
-
-    /*
-1 3 6
-2 3 4
-2 3 5
- */
-
-    void addCacheNode(list<ListNode*>& lists, ListNode *node) {
-        if (node == NULL) {
-            return;
-        }
-
-        if (lists.empty()) {
-            lists.push_back(node);
-            return;
-        }
-
-        list<ListNode*>::iterator iter = lists.begin();
-
-        while (iter != lists.end()) {
-//            cout << (*iter)->val << endl;
-            if ((*iter)->val < node->val) {
-                ++iter;
-            } else {
-                break;
-            }
-        }
-
-        if (iter == lists.end()) {
-            lists.push_back(node);
-        } else {
-            lists.insert(iter, node);
-        }
-    }
-
-    void sortHead(vector<ListNode*>& lists) {
-        for (vector<ListNode*>::iterator iter = lists.begin(); iter != lists.end(); ) {
-            if ((*iter) != NULL ) {
-                iter++;
-            } else {
-                iter = lists.erase(iter);
-            }
-        }
-        fastSort(lists, 0, lists.size() - 1);
-    }
-
-    void fastSort(vector<ListNode*>& lists, int start, int end) {
-        if (start >= end)
-            return;
-
-        ListNode *key = lists[end];
-        int i = start;
-        int j = end - 1;
-
-        while (i < j) {
-            while (lists[i]->val <= key->val && i < j) {
-                ++i;
-            }
-
-            while (lists[j]->val > key->val && i < j) {
-                --j;
-            }
-
-            if (i < j) {
-                ListNode *mid_node = lists[i];
-                lists[i] = lists[j];
-                lists[j] = mid_node;
-            }
-        }
-
-        if (lists[i]->val > key->val) {
-            lists[end] = lists[i];
-            lists[i] = key;
-        }
-
-        fastSort(lists, start, i);
-        fastSort(lists, i + 1, end);
+        return lists.back();
     }
 
     ListNode* mergeTwoLists(ListNode* l1, ListNode* l2) {
@@ -160,40 +55,290 @@ public:
         if (l2 == NULL) {
             return l1;
         }
-        ListNode *index1 = l1;
-        ListNode *index2 = l2;
+
         ListNode *result;
 
-        if (index1->val > index2->val) {
-            result = index2;
-            index2 = index2->next;
+        if (l1->val > l2->val) {
+            result = l2;
+            l2 = l2->next;
         } else {
-            result = index1;
-            index1 = index1->next;
+            result = l1;
+            l1 = l1->next;
         }
 
         ListNode *result_index = result;
 
-        while (index1 != NULL && index2 != NULL) {
-            if (index1->val > index2->val) {
-                result_index->next = index2;
-                index2 = index2->next;
+        while (l1 != NULL && l2 != NULL) {
+            if (l1->val > l2->val) {
+                result_index->next = l2;
+                l2 = l2->next;
             } else {
-                result_index->next = index1;
-                index1 = index1->next;
+                result_index->next = l1;
+                l1 = l1->next;
             }
             result_index = result_index->next;
         }
 
-        if (index1 != NULL) {
-            result_index->next = index1;
+        if (l1 != NULL) {
+            result_index->next = l1;
         } else {
-            result_index->next = index2;
+            result_index->next = l2;
         }
 
         return result;
     }
 };
+
+
+// (低内存, 但是耗时.)优化耗时, (使用list可以优化时间)
+//class Solution {
+//public:
+//    ListNode* mergeKLists(vector<ListNode*>& lists) {
+//        if (lists.empty()) {
+//            return NULL;
+//        }
+//
+//        list<ListNode*> new_lists;
+//
+//        vector<ListNode*>::iterator iter = lists.begin();
+//        for (; iter != lists.end(); iter++) {
+//            if (*iter != NULL) {
+//                new_lists.push_back(*iter);
+//            }
+//        }
+//
+//        if (new_lists.size() == 1) {
+//            return new_lists.front();
+//        }
+//
+//        ListNode *head = NULL;
+//        while (true) {
+//            ListNode *l1 = new_lists.front();
+//            new_lists.pop_front();
+//            ListNode *l2 = new_lists.front();
+//            new_lists.pop_front();
+//
+//            head = mergeTwoLists(l1, l2);
+//            if (new_lists.empty()) {
+//                break;
+//            }
+//
+//            new_lists.push_back(head);
+//        }
+//
+//        return head;
+//    }
+//
+//    ListNode* mergeTwoLists(ListNode* l1, ListNode* l2) {
+//        if (l1 == NULL) {
+//            return l2;
+//        }
+//
+//        if (l2 == NULL) {
+//            return l1;
+//        }
+//
+//        ListNode *result;
+//
+//        if (l1->val > l2->val) {
+//            result = l2;
+//            l2 = l2->next;
+//        } else {
+//            result = l1;
+//            l1 = l1->next;
+//        }
+//
+//        ListNode *result_index = result;
+//
+//        while (l1 != NULL && l2 != NULL) {
+//            if (l1->val > l2->val) {
+//                result_index->next = l2;
+//                l2 = l2->next;
+//            } else {
+//                result_index->next = l1;
+//                l1 = l1->next;
+//            }
+//            result_index = result_index->next;
+//        }
+//
+//        if (l1 != NULL) {
+//            result_index->next = l1;
+//        } else {
+//            result_index->next = l2;
+//        }
+//
+//        return result;
+//    }
+//};
+
+// 提升速度, 但是内存增加.
+//class Solution {
+//public:
+//    ListNode* mergeKLists(vector<ListNode*>& lists) {
+//        if (lists.empty()) {
+//            return NULL;
+//        }
+//
+//        if (lists.size() == 1) {
+//            return lists[0];
+//        }
+//
+//        if (lists.size() <= 2) {
+//            return mergeTwoLists(lists[0], lists[1]);
+//        }
+//
+//        sortHead(lists);
+//
+//        list<ListNode*> cache;
+//        ListNode *head = lists[0];
+//        ListNode *index_node = head;
+//
+//        int index_flag = 1;
+//        int size = lists.size();
+//
+//        addCacheNode(cache, lists[1]);
+//        addCacheNode(cache, lists[0]->next);
+//
+//
+//        while (!cache.empty() || index_flag < size - 1) {
+//            ListNode *current_node = cache.front();
+//            cache.pop_front();
+//
+//            index_node->next = current_node;
+//            index_node = current_node;
+//
+//            if (index_flag < size - 1 && current_node == lists[index_flag]) {
+//                addCacheNode(cache, lists[++index_flag]);
+//            }
+//
+//            if (current_node->next != NULL) {
+//                addCacheNode(cache, current_node->next);
+//            }
+//        }
+//
+//        return head;
+//    }
+//
+//    /*
+//1 3 6
+//2 3 4
+//2 3 5
+// */
+//
+//    void addCacheNode(list<ListNode*>& lists, ListNode *node) {
+//        if (node == NULL) {
+//            return;
+//        }
+//
+//        if (lists.empty()) {
+//            lists.push_back(node);
+//            return;
+//        }
+//
+//        list<ListNode*>::iterator iter = lists.begin();
+//
+//        while (iter != lists.end()) {
+////            cout << (*iter)->val << endl;
+//            if ((*iter)->val < node->val) {
+//                ++iter;
+//            } else {
+//                break;
+//            }
+//        }
+//
+//        if (iter == lists.end()) {
+//            lists.push_back(node);
+//        } else {
+//            lists.insert(iter, node);
+//        }
+//    }
+//
+//    void sortHead(vector<ListNode*>& lists) {
+//        for (vector<ListNode*>::iterator iter = lists.begin(); iter != lists.end(); ) {
+//            if ((*iter) != NULL ) {
+//                iter++;
+//            } else {
+//                iter = lists.erase(iter);
+//            }
+//        }
+//        fastSort(lists, 0, lists.size() - 1);
+//    }
+//
+//    void fastSort(vector<ListNode*>& lists, int start, int end) {
+//        if (start >= end)
+//            return;
+//
+//        ListNode *key = lists[end];
+//        int i = start;
+//        int j = end - 1;
+//
+//        while (i < j) {
+//            while (lists[i]->val <= key->val && i < j) {
+//                ++i;
+//            }
+//
+//            while (lists[j]->val > key->val && i < j) {
+//                --j;
+//            }
+//
+//            if (i < j) {
+//                ListNode *mid_node = lists[i];
+//                lists[i] = lists[j];
+//                lists[j] = mid_node;
+//            }
+//        }
+//
+//        if (lists[i]->val > key->val) {
+//            lists[end] = lists[i];
+//            lists[i] = key;
+//        }
+//
+//        fastSort(lists, start, i);
+//        fastSort(lists, i + 1, end);
+//    }
+//
+//    ListNode* mergeTwoLists(ListNode* l1, ListNode* l2) {
+//        if (l1 == NULL) {
+//            return l2;
+//        }
+//
+//        if (l2 == NULL) {
+//            return l1;
+//        }
+//        ListNode *index1 = l1;
+//        ListNode *index2 = l2;
+//        ListNode *result;
+//
+//        if (index1->val > index2->val) {
+//            result = index2;
+//            index2 = index2->next;
+//        } else {
+//            result = index1;
+//            index1 = index1->next;
+//        }
+//
+//        ListNode *result_index = result;
+//
+//        while (index1 != NULL && index2 != NULL) {
+//            if (index1->val > index2->val) {
+//                result_index->next = index2;
+//                index2 = index2->next;
+//            } else {
+//                result_index->next = index1;
+//                index1 = index1->next;
+//            }
+//            result_index = result_index->next;
+//        }
+//
+//        if (index1 != NULL) {
+//            result_index->next = index1;
+//        } else {
+//            result_index->next = index2;
+//        }
+//
+//        return result;
+//    }
+//};
 
 // 低内存, 但是耗时.
 //class Solution {
