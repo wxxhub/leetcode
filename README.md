@@ -35,6 +35,8 @@
 [21.合并两个有序链表](algotithm/21/README.md)  
 [22.括号生成](algotithm/22/README.md)  
 [23.合并K个排序链表](algotithm/23/README.md)  
+[24.两两交换链表中的节点](algotithm/24/README.md)  
+[25.K 个一组翻转链表](algotithm/25/README.md)  
 
 #### 排序算法
 [1.快排序](sort/fast_sort/README.md)  
