@@ -37,6 +37,8 @@
 [23.合并K个排序链表](algotithm/23/README.md)  
 [24.两两交换链表中的节点](algotithm/24/README.md)  
 [25.K 个一组翻转链表](algotithm/25/README.md)  
+[26.删除排序数组中的重复项](algotithm/26/README.md)  
+[27.移除元素](algotithm/27/README.md)  
 
 #### 排序算法
 [1.快排序](sort/fast_sort/README.md)  
