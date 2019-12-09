@@ -40,6 +40,7 @@
 [26.删除排序数组中的重复项](algotithm/26/README.md)  
 [27.移除元素](algotithm/27/README.md)  
 [28.实现 strStr()](algotithm/28/README.md)  
+[29.两数相除](algotithm/29/README.md)  
 
 #### 排序算法
 [1.快排序](sort/fast_sort/README.md)  

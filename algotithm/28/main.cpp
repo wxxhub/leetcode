@@ -59,6 +59,12 @@ int main() {
     Solution solution;
     int result = solution.strStr("hello", "ll");
     cout << "s: " << result << endl;
+
+    string test_input = "aaaaabaaaaaaaaabaaaaaaaaaaaaab";
+    vector<int> test = solution.getNext(test_input);
+    for (int i = 0; i < test.size(); ++i) {
+        cout << test_input[i] << " " << test[i] << endl;
+    }
     return 0;
 }
 
@@ -73,4 +79,6 @@ int main() {
 
  a  a b a a a c
  -1 0 1 0 1 2 2 0
+
+ a a a a a b a a a a a a a b a a a a a a a a a b 
  */
