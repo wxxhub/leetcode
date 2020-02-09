@@ -6,7 +6,7 @@ using namespace std;
 class Solution {
 public:
     int longestValidParentheses(string s) {
-        max_len = 0;
+        int result = 0;
         int end = s.size();
         int current_len = 0;
 
@@ -43,22 +43,19 @@ public:
             if (s[start] == 'y') {
                 current_len++;
             } else {
-                update_max(current_len);
+                if (current_len > result) {
+                    result = current_len;
+                }
                 current_len = 0;
             }
 
         }
 
-        update_max(current_len);
-        return max_len;
-    }
-
-private:
-    int max_len;
-    void update_max(int len) {
-        if (len > max_len) {
-            max_len = len;
+        if (current_len > result) {
+            result = current_len;
         }
+
+        return result;
     }
 };
 
