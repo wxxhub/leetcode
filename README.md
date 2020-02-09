@@ -43,6 +43,7 @@
 [29.两数相除](algotithm/29/README.md)  
 [30.串联所有单词的子串~](algotithm/30/README.md)  
 [31.下一个排列](algotithm/31/README.md) 
+[32. 最长有效括号](algotithm/32/README.md) 
 
 #### 排序算法
 [1.快排序](sort/fast_sort/README.md)  
