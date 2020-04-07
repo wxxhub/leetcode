@@ -45,6 +45,7 @@
 [31.下一个排列](algotithm/31/README.md) 
 [32. 最长有效括号](algotithm/32/README.md)  
 [33. 搜索旋转排序数组](algotithm/33/README.md)  
+[34. 在排序数组中查找元素的第一个和最后一个位置](algotithm/34/README.md)  
 
 #### 排序算法
 [1.快排序](sort/fast_sort/README.md)  
