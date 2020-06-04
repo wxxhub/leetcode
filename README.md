@@ -51,6 +51,7 @@
 [37. 解数独#](algotithm/37/README.md)  
 [38. 外观数列#](algotithm/38/README.md)  
 [39.组合总和](algotithm/39/README.md)  
+[40.组合总和II](algotithm/40/README.md)  
 
 #### 排序算法
 [1.快排序](sort/fast_sort/README.md)  
