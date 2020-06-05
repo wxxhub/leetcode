@@ -52,6 +52,9 @@
 [38. 外观数列#](algotithm/38/README.md)  
 [39.组合总和](algotithm/39/README.md)  
 [40.组合总和II](algotithm/40/README.md)  
+[41.缺失的第一个正数](algotithm/41/README.md)  
+[42.接雨水](algotithm/42/README.md)  
+[43.字符串相乘](algotithm/43/README.md)  
 
 #### 排序算法
 [1.快排序](sort/fast_sort/README.md)  
