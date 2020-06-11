@@ -61,6 +61,7 @@
 [47.全排列II](algotithm/47/README.md)  
 [48.旋转图像](algotithm/48/README.md)  
 [49.字母异位词分组](algotithm/49/README.md)  
+[50.Pow(x, n)](algotithm/50/README.md)  
 
 #### 排序算法
 [1.快排序](sort/fast_sort/README.md)  
